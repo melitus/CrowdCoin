@@ -22,12 +22,13 @@ const CampaignIndex:NextPage<Props> = (props) => {
         <Layout>
         <>
             <h3>Open Campaigns</h3>
-            <Card.Group items ={items} />
             <Button
               content="Create Campaign"
+              floated="right"
               icon="add circle"
               primary
             />
+            <Card.Group items ={items} />
          </>
          </Layout>
             );
