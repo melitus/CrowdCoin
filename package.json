@@ -9,7 +9,7 @@
     "benchmark": "truffle test ./benchmark/*",
     "compile": "truffle compile",
     "migrate": "truffle migrate --network development",
-    "console": "truffle console --network rinkeby",
+    "console": "truffle console --network development",
     "rinkeby": "truffle migrate -f 2 --network rinkeby",
     "ropsten": "truffle migrate -f 2 --network ropsten",
     "coverage": "truffle run coverage",

@@ -1,16 +1,16 @@
 import React, {FunctionComponent, useEffect} from 'react'
 import { NextPage } from 'next'
-import {Card} from 'semantic-ui-react'
+import {Card, Button} from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
 
 import factory from '../lib/factory'
+import Layout from '../components/Layout'
 
 interface Props {
   campaigns?: Array<string>;
 }
 
 const CampaignIndex:NextPage<Props> = (props) => {
-
-    const renderCampaigns = () =>{
         const items = props.campaigns.map( address => {
          return {
              header: address,
@@ -18,18 +18,25 @@ const CampaignIndex:NextPage<Props> = (props) => {
              fluid: true
          }
         })
-        return <Card.Group items ={items} />
-    }
     return (
-    <h1>{renderCampaigns}</h1>
-    );
+        <Layout>
+        <>
+            <h3>Open Campaigns</h3>
+            <Card.Group items ={items} />
+            <Button
+              content="Create Campaign"
+              icon="add circle"
+              primary
+            />
+         </>
+         </Layout>
+            );
 }
 
 CampaignIndex.getInitialProps = async (ctx )  => {
-    console.log({factory: factory() })
     const instance = await factory()
    const campaigns = await instance.methods.getDeployedCampaigns().call()
-   console.log({campaigns, deployed: true})
+
    return {campaigns}
 }
 
