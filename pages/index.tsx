@@ -1,7 +1,6 @@
 import React, {FunctionComponent, useEffect} from 'react'
 import { NextPage } from 'next'
 import {Card, Button} from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css'
 
 import factory from '../lib/factory'
 import Layout from '../components/Layout'
