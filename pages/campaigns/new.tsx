@@ -8,6 +8,7 @@ import {loadWeb3} from '../../lib/web3'
 const CampaignNew = () => {
     const [minimumContribution, setMinimumContribution] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
+    const [loading, setLoading] = useState(false)
 
     const handleChange = event =>{
         console.log({event: event.target.value})
@@ -15,16 +16,18 @@ const CampaignNew = () => {
     }
     const handleSubmit = async (event) => {
         event.preventDefault() // this keep the browser fromm attempting to submit the form
+        setLoading(true)
+        setErrorMessage('')
         try {
         const instance = await factory()
         const web3 = await loadWeb3()
         const accounts = await web3.eth.getAccounts()
         console.log({accounts})
         console.log({submit: minimumContribution})
-        const contribution = Number(minimumContribution)
-                console.log({contribution: contribution})
+        // const contribution = Number(minimumContribution)
+        //         console.log({contribution: contribution})
         await instance.methods
-           .createCampaign(contribution)
+           .createCampaign(minimumContribution)
            .send({
                from: accounts[0]
            })
@@ -32,12 +35,12 @@ const CampaignNew = () => {
             setErrorMessage(error.message)
          console.trace(error)
         }
-
+         setLoading(false)
     }
     return (
         <Layout>
           <h3>Create a Campaign!</h3>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} error={!!errorMessage}>
                 <Form.Field>
                   <label>Minimum Contributions: {minimumContribution}</label>
                     <Input
@@ -47,7 +50,8 @@ const CampaignNew = () => {
                     onChange={handleChange}
                      />
                 </Form.Field>
-                  <Button primary>Create!</Button>
+                <Message error header="Oops!" content={errorMessage} />
+                  <Button loading={loading} primary>Create!</Button>
             </Form>
         </Layout>
     )
