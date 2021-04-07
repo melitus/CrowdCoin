@@ -1,11 +1,12 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import { NextPage } from 'next'
-import {Card} from 'semantic-ui-react'
+import {Card, Grid} from 'semantic-ui-react'
 
 import Layout from '../../components/Layout'
 import getCampaignInstance from '../../lib/campaign'
 import {loadWeb3} from '../../lib/web3'
+import ContributeForm from '../../components/contributeForm'
 
 interface Props {
   minimumContribution?: string;
@@ -60,7 +61,14 @@ const ShowCampaign:NextPage<Props> = (props) => {
   return (
       <Layout>
           <p>Campaign Show</p>
-          <Card.Group items ={items} />
+          <Grid>
+              <Grid.Column width={10}>
+                 <Card.Group items ={items} />
+              </Grid.Column>
+               <Grid.Column width={6}>
+                 <ContributeForm />
+              </Grid.Column>
+          </Grid>
       </Layout>
   )
 }
@@ -71,9 +79,10 @@ ShowCampaign.getInitialProps = async (props)  => {
     const campaign = await getCampaignInstance(show)
     const summary = await campaign.methods.getSummary().call()
     const web3 = await loadWeb3()
+    console.log({web3})
    return {
        minimumContribution: summary[0],
-       balance: web3.util.fromWei(summary[1],'ether'),
+       balance: web3.utils.fromWei(summary[1],'ether'),
        requestCount: summary[2],
        approvalCount: summary[3],
        manager: summary[4]
