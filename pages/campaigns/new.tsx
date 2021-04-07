@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Button, Input, Form, Message} from 'semantic-ui-react'
+import { useRouter } from 'next/router'
 
 import Layout from '../../components/Layout'
 import factory from '../../lib/factory'
@@ -9,6 +10,7 @@ const CampaignNew = () => {
     const [minimumContribution, setMinimumContribution] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
     const [loading, setLoading] = useState(false)
+    const router = useRouter()
 
     const handleChange = event =>{
         setMinimumContribution(event.target.value)
@@ -32,6 +34,7 @@ const CampaignNew = () => {
         setErrorMessage('')
         try {
           await createCampaign()
+        router.push('/')
         } catch (error) {
            setErrorMessage(error.message)
         }
