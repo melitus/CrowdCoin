@@ -7,6 +7,7 @@ import Link from 'next/link'
 import Layout from '../../../../components/Layout'
 import getCampaignInstance from '../../../../lib/campaign'
 import RequestList from '../../../../components/RequestList'
+// import {loadWeb3} from '../../lib/web3'
 
 const RequestIndex = (props) => {
   const {Header, Row, HeaderCell, Body} = Table
@@ -14,7 +15,12 @@ const RequestIndex = (props) => {
   const renderRequestList = () => {
     return props.requests.map((request, index) => {
       return (
-        <RequestList key={index} request={request} address={props.address} />
+        <RequestList
+          key={index}
+          id={index}
+          request={request}
+          address={props.address}
+        />
       )
     })
   }
