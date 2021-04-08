@@ -33,6 +33,7 @@ const NewRequestForm = (props) => {
   }
 
   const createRequest = async () => {
+    console.log({address: props.address})
     const campaign = await getCampaignInstance(props.address)
     const web3 = await loadWeb3()
     const accounts = await web3.eth.getAccounts()
@@ -51,7 +52,7 @@ const NewRequestForm = (props) => {
     setErrorMessage('')
     try {
       await createRequest()
-      router.push(`/campaigns/${props.address}/request`)
+      router.push(`/campaigns/${props.address}/requests`)
     } catch (error) {
       setErrorMessage(error.message)
     }

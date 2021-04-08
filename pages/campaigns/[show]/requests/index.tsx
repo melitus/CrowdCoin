@@ -20,6 +20,7 @@ const RequestIndex = (props) => {
           id={index}
           request={request}
           address={props.address}
+          approversCount={props.approversCount}
         />
       )
     })
@@ -29,7 +30,9 @@ const RequestIndex = (props) => {
       <h3>Request list</h3>
       <Link href={`/campaigns/${props.address}/requests/new`}>
         <a>
-          <Button primary>Add Request</Button>
+          <Button primary floated="right" style={{marginBottom: 10}}>
+            Add Request
+          </Button>
         </a>
       </Link>
       <Table>
@@ -46,6 +49,7 @@ const RequestIndex = (props) => {
         </Header>
         <Body>{renderRequestList()}</Body>
       </Table>
+      <div>Found {props.requestCount} request</div>
     </Layout>
   )
 }
@@ -54,6 +58,7 @@ RequestIndex.getInitialProps = async (props) => {
   const {show} = props.query as any
   const campaign = await getCampaignInstance(show)
   const requestCount = await campaign.methods.getRequestsCount().call()
+  const approversCount = await campaign.methods.approversCount().call()
   const requests = await Promise.all(
     Array(Number(requestCount))
       .fill(0)
@@ -66,6 +71,7 @@ RequestIndex.getInitialProps = async (props) => {
     address: show,
     requests,
     requestCount,
+    approversCount,
   }
 }
 
