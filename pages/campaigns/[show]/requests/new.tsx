@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React, {useState} from 'react'
 import {Button, Input, Form, Message} from 'semantic-ui-react'
@@ -32,17 +33,9 @@ const NewRequestForm = (props) => {
   }
 
   const createRequest = async () => {
-    console.log({props})
     const campaign = await getCampaignInstance(props.address)
     const web3 = await loadWeb3()
     const accounts = await web3.eth.getAccounts()
-    console.log({
-      response: {
-        description,
-        value: web3.utils.toWei(value, 'ether'),
-        recipient,
-      },
-    })
     const newRequest = await campaign.methods
       .createRequest(description, web3.utils.toWei(value, 'ether'), recipient)
       .send({
@@ -58,7 +51,7 @@ const NewRequestForm = (props) => {
     setErrorMessage('')
     try {
       await createRequest()
-      //   router.push('/')
+      router.push(`/campaigns/${props.address}/request`)
     } catch (error) {
       setErrorMessage(error.message)
     }
@@ -66,6 +59,9 @@ const NewRequestForm = (props) => {
   }
   return (
     <Layout>
+      <Link href={`/campaigns/${props.address}/requests`}>
+        <a>Back </a>
+      </Link>
       <h3>Create a request</h3>
       <Form onSubmit={handleSubmit} error={!!errorMessage}>
         <Form.Field>

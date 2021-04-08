@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Layout from '../../components/Layout'
 import getCampaignInstance from '../../lib/campaign'
 import {loadWeb3} from '../../lib/web3'
-import ContributeForm from '../../components/contributeForm'
+import ContributeForm from '../../components/ContributeForm'
 
 interface Props {
   minimumContribution?: string
