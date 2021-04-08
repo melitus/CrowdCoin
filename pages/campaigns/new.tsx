@@ -12,7 +12,7 @@ const CampaignNew = () => {
     const [loading, setLoading] = useState(false)
     const router = useRouter()
 
-    const handleChange = event =>{
+    const handleChange = (event:React.ChangeEvent<HTMLInputElement>) =>{
         setMinimumContribution(event.target.value)
     }
 
@@ -28,7 +28,7 @@ const CampaignNew = () => {
             })
            return campaignCreate
 }
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault() // this keep the browser fromm attempting to submit the form
         setLoading(true)
         setErrorMessage('')

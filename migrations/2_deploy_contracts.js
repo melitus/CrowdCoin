@@ -8,7 +8,7 @@ const CampaignFactory = artifacts.require("CampaignFactory");
 
 module.exports = async function(deployer, network, accounts) {
   await deployer.deploy(CampaignFactory)
-  await deployer.deploy(Campaign, 30000000000, '0xdE09e866C8D3A9840Af4BA1A60c912343e61c101');
+  await deployer.deploy(Campaign, '100000000', accounts[0] );
 };
 
 

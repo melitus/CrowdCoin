@@ -1,5 +1,4 @@
 import React from 'react'
-import { useRouter } from 'next/router'
 import { NextPage } from 'next'
 import {Card, Grid} from 'semantic-ui-react'
 
@@ -18,9 +17,7 @@ interface Props {
 }
 
 
-const ShowCampaign:NextPage<Props> = (props) => {
-    const router = useRouter()
-  const { show } = router.query
+const ShowCampaign:NextPage<Props> = (props: any) => {
    const {
        minimumContribution,
        balance,
@@ -66,7 +63,7 @@ const ShowCampaign:NextPage<Props> = (props) => {
                  <Card.Group items ={items} />
               </Grid.Column>
                <Grid.Column width={6}>
-                 <ContributeForm />
+                 <ContributeForm address={props.address} />
               </Grid.Column>
           </Grid>
       </Layout>
@@ -75,12 +72,12 @@ const ShowCampaign:NextPage<Props> = (props) => {
 
 
 ShowCampaign.getInitialProps = async (props)  => {
-    const {show} = props.query
+    const {show} = props.query as any
     const campaign = await getCampaignInstance(show)
     const summary = await campaign.methods.getSummary().call()
     const web3 = await loadWeb3()
-    console.log({web3})
    return {
+       address: show,
        minimumContribution: summary[0],
        balance: web3.utils.fromWei(summary[1],'ether'),
        requestCount: summary[2],
