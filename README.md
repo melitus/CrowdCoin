@@ -1,7 +1,5 @@
 # CrowdCoin
 
-# ethereum-kickstarter-project
-
 Allows you to create and manage campaigns in Rinkeby network using ethereum smart contracts.
 
 
@@ -83,17 +81,26 @@ In the absence of metamask, the project will fallback to using [Infura node](htt
 - link: https://ropsten.etherscan.io/address/0x0268B3D69FbD4b83F2a51E579ed0953f7a8775E2
 
 
-### Contract Graph
+### Campaign Contract Graph
 - Use Solidity Visual Developer to generate the graph for the contract
 
 ![Alt text](./diagrams/contractGraph.png?raw=true "Test coverage results")
 
+### Campaign Factory Contract Graph
+- Use Solidity Visual Developer to generate the graph for the contract
+
+![Alt text](./diagrams/contractGraphFactory.png?raw=true "Test coverage results")
 
 
-### Contract UML Diagram
+### Campaign Contract UML Diagram
 - Use Solidity Visual Developer to generate the UML with PlantUML embedded
 
 ![Alt text](./diagrams/contract-uml.png?raw=true "Test coverage results")
+
+### Campaign Contract UML Diagram
+- Use Solidity Visual Developer to generate the UML with PlantUML embedded
+
+![Alt text](./diagrams/umlfactory.png?raw=true "Test coverage results")
 
 
 ## Smart Contract
@@ -143,3 +150,5 @@ Once the approval criteria is met, the manager can finalize the request for paym
 Manager of a campaign can create a request which will be fulfilled by the recipient.
 
 Once more than 50% of the campaign contributors approve the request, the manager can finalize the payment to the vendor.
+
+- Credit: Stephen Grider course on Udemy

@@ -32,6 +32,9 @@ const ContributeForm: React.FunctionComponent<IProps> = (props) => {
   }
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault() // this keep the browser fromm attempting to submit the form
+    // Abort if form isn't valid
+    if (!event.currentTarget.reportValidity()) return;
+
     setLoading(true)
     setErrorMessage('')
     try {
