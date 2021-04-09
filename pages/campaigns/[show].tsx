@@ -56,7 +56,15 @@ const ShowCampaign: NextPage<Props> = (props: any) => {
   ]
 
   return (
-    <Layout>
+    <Layout
+      head={{
+        title: 'Campaign list',
+        description:
+          'Browse to open list of created campaign for crowdCoin dapp.',
+        canonical: '/campaigns/:show',
+      }}
+      noLanding={true}
+    >
       <p>Campaign Show</p>
       <Grid>
         <Grid.Row>

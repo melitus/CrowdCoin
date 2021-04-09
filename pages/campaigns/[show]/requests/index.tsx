@@ -26,7 +26,14 @@ const RequestIndex = (props) => {
     })
   }
   return (
-    <Layout>
+    <Layout
+      head={{
+        title: 'Add new Request to Campaign',
+        description: 'Add new request campaign for crowdCoin dapp.',
+        canonical: '/campaigns/:address/requests',
+      }}
+      noLanding={true}
+    >
       <h3>Request list</h3>
       <Link href={`/campaigns/${props.address}/requests/new`}>
         <a>

@@ -18,6 +18,27 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
+  "baseUrl": "./", /* Base directory to resolve non-absolute module names. */
+  "paths": {
+    "@/components/*": [
+      "components/*"
+    ],
+    "@/pages/*": [
+      "pages/*"
+    ],
+    "@/queries/*": [
+      "queries/*"
+    ],
+    "lib/*": [
+      "src/lib/*"
+    ],
+    "utils/*": [
+      "src/utils/*"
+    ],
+    "hooks/*": [
+      "src/hooks/*"
+    ]
+  },
   "include": [
     "next-env.d.ts",
     "**/*.ts",

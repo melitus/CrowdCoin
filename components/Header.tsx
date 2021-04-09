@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React from 'react'
 import {Menu} from 'semantic-ui-react'
 import Link from 'next/link'

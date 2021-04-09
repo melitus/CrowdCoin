@@ -59,18 +59,26 @@ const NewRequestForm = (props) => {
     setLoading(false)
   }
   return (
-    <Layout>
+    <Layout
+      head={{
+        title: 'Create a Request',
+        description:
+          'Browse to add new request to campaign for crowdCoin dapp.',
+        canonical: '/campaigns/:address/requests/new',
+      }}
+      noLanding={true}
+    >
       <Link href={`/campaigns/${props.address}/requests`}>
         <a>Back </a>
       </Link>
       <h3>Create a request</h3>
       <Form onSubmit={handleSubmit} error={!!errorMessage}>
         <Form.Field>
-          <label>Description</label>
+          <label htmlFor="description">Description</label>
           <Input value={description} onChange={handleDescriptionChange} />
         </Form.Field>
         <Form.Field>
-          <label>Value in ether</label>
+          <label htmlFor="value">Value in ether</label>
           <Input
             label="wei"
             labelPosition="right"
@@ -79,7 +87,7 @@ const NewRequestForm = (props) => {
           />
         </Form.Field>
         <Form.Field>
-          <label>Recipient</label>
+          <label htmlFor="recipient">Recipient</label>
           <Input value={recipient} onChange={handleRecipientChange} />
         </Form.Field>
         <Message error header="Oops!" content={errorMessage} />
